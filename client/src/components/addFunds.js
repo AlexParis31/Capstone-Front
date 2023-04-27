@@ -25,7 +25,7 @@ const AddFunds = () => {
     return (
         <>
         <form className="d-flex mt-5" onSubmit={handleFundsSubmit}>
-            <label htmlFor="for">For: </label>
+            <label htmlFor="for">Add Funds to Your Account: </label>
             <input
                 type="text"
                 className="form-control"

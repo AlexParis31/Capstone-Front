@@ -6,8 +6,10 @@ import EditBank from "./editBank";
 const ListBank = () => {
 
 
-    const money = 1000;
+    
     const [transactions, setTransactions] = useState([]);
+
+    const [expenses, setExpenses] = useState(0);
 
     const [funds, setFunds] = useState(0);
 
@@ -32,15 +34,28 @@ const ListBank = () => {
 
 
             setTransactions(allBanks)
-            setFunds(sumFunds)
-            // setFunds(jsonData[1])
+            setExpenses(sumFunds)
+            
         } catch (err) {
             console.error(err.message);
         }
     };
 
+    const getFunds = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/myfunds");
+            const jsonData = await response.json();
+            const data = jsonData[0].funds;
+
+            setFunds(data)
+        } catch (err) {
+            console.error(err.message)
+        }
+    }
+
     useEffect(() => {
         getBank();
+        getFunds();
     }, []);
 
     console.log(transactions)
@@ -82,7 +97,7 @@ const ListBank = () => {
             </tbody>
         </table>
 
-        <h1 class="funds">REMAINING FUNDS: {money-funds}</h1>
+        <h1 className="funds">REMAINING FUNDS: {funds-expenses}</h1>
 
         </>
 )};
