@@ -6,6 +6,8 @@ const InputBank = () => {
     const [amount , setAmount] = useState(0)
     const [date , setDate] = useState("")
 
+    const [funds, setFunds] = useState(0)
+
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -15,7 +17,7 @@ const InputBank = () => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body)
-          });
+          })
     
           window.location = "/";
         } catch (err) {
@@ -23,6 +25,7 @@ const InputBank = () => {
         }
       };
 
+    
 
 
 

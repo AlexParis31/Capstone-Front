@@ -5,7 +5,11 @@ import EditBank from "./editBank";
 
 const ListBank = () => {
 
+
+    const money = 1000;
     const [transactions, setTransactions] = useState([]);
+
+    const [funds, setFunds] = useState(0);
 
     const deleteBank = async (id) => {
         try {
@@ -23,8 +27,13 @@ const ListBank = () => {
         try {
             const response = await fetch("http://localhost:3000/bank");
             const jsonData = await response.json();
+            const allBanks = jsonData.allBanks;
+            const sumFunds = jsonData.sumFunds;
 
-            setTransactions(jsonData)
+
+            setTransactions(allBanks)
+            setFunds(sumFunds)
+            // setFunds(jsonData[1])
         } catch (err) {
             console.error(err.message);
         }
@@ -46,6 +55,9 @@ const ListBank = () => {
                 <th>Transaction</th>
                 <th>Amount</th>
                 <th>Date</th>
+                <th></th>
+                
+                
             </tr>
             </thead>
             <tbody>
@@ -55,6 +67,8 @@ const ListBank = () => {
                         <td>{trans.name}</td>
                         <td>{trans.amount}</td>
                         <td>{trans.date}</td>
+                        
+                        
                         <td>
                             <EditBank bank = {trans}/>
                         </td>
@@ -64,8 +78,12 @@ const ListBank = () => {
                     </tr>
                 )
                 )}
+
             </tbody>
         </table>
+
+        <h1 class="funds">REMAINING FUNDS: {money-funds}</h1>
+
         </>
 )};
 

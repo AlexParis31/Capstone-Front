@@ -4,6 +4,7 @@ import './App.css';
 //components
 
 import InputBank from "./components/inputBank";
+import AddFunds from "./components/addFunds"
 import ListBank from "./components/listBank";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <>
       <div className="container">
         <InputBank />
+        <AddFunds/>
         <ListBank />
       </div>
     </>

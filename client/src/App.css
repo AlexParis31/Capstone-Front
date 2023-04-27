@@ -40,3 +40,10 @@
 body {
   background-color: rgb(183, 183, 192);
 }
+
+.funds {
+  font-size: 25px;
+  background-color: #61dafb;
+  width: 9em;
+  text-align: center;
+}
