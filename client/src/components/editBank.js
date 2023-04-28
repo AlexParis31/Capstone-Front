@@ -5,12 +5,13 @@ const EditBank = ({ bank }) => {
   const [name, setName] = useState(bank.name);
   const [amount, setAmount] = useState(bank.amount);
   const [date, setDate] = useState(bank.date);
+  const [category, setCategory ] = useState(bank.category);
 
   //edit transaction function
   const updateTransaction = async e => {
         e.preventDefault();
         try {
-          const body = { name, amount, date };
+          const body = { name, amount, date, category };
           const response = await fetch(
             `http://localhost:3000/bank/${bank.transaction_id}`,
             {
@@ -29,7 +30,8 @@ const EditBank = ({ bank }) => {
       const setAll = (bank) => {
         setName(bank.name);
         setAmount(bank.amount);
-        setDate(bank.date)
+        setDate(bank.date);
+        setCategory(bank.category);
       }
 
   return (
@@ -51,6 +53,7 @@ const EditBank = ({ bank }) => {
               <input type="text" className="form-control" value={name} onChange={e => setName(e.target.value)}/>
               <input type="text" className="form-control" value={amount} onChange={e => setAmount(e.target.value)}/>
               <input type="text" className="form-control" value={date} onChange={e => setDate(e.target.value)}/>
+              <input type="text" className="form-control" value={category} onChange={e => setCategory(e.target.value)}/>
             </div>
 
             <div className="modal-footer">

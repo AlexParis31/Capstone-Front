@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import './App.css';
 
 //components
@@ -12,9 +12,22 @@ function App() {
   return (
     <>
       <div className="container">
-        <InputBank />
-        <AddFunds/>
+
+      <h1 className = "text-center mt-5">Pern Transaction Lists</h1>
+        
         <ListBank />
+
+        <details>
+          <summary>Input Transaction</summary>
+        <InputBank />
+        </details>
+
+        <details>
+          <summary>Add Funds</summary>
+        <AddFunds/>
+        </details>
+          
+        
       </div>
     </>
   );
