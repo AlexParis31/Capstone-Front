@@ -36,7 +36,7 @@ const EditBank = ({ bank }) => {
 
   return (
     <>
-      <button type="button" className="btn btn-warning" data-toggle="modal" data-target={`#id${bank.transaction_id}`}>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target={`#id${bank.transaction_id}`}>
         Edit
       </button>
 

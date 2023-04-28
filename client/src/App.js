@@ -1,36 +1,36 @@
 import React, {useEffect, useState} from "react";
 import './App.css';
+import { Link, BrowserRouter, Route, Routes } from "react-router-dom"
 
 //components
 
-import InputBank from "./components/inputBank";
 import AddFunds from "./components/addFunds"
 import ListBank from "./components/listBank";
 
 function App() {
 
   return (
-    <>
-      <div className="container">
+    <BrowserRouter>
+      <>
+        <nav className="navbar">
+            <Link to="/"  className="navItem" >Home</Link>
+            <Link to="/transactions" className="navItem" >Transactions</Link>
+            <Link to="/add" className="navItem" >Manage Account</Link>
+        </nav>
 
-      <h1 className = "text-center mt-5">Pern Transaction Lists</h1>
-        
-        <ListBank />
 
-        <details>
-          <summary>Input Transaction</summary>
-        <InputBank />
-        </details>
-
-        <details>
-          <summary>Add Funds</summary>
-        <AddFunds/>
-        </details>
-          
-        
-      </div>
-    </>
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<h1>Hello</h1>} />
+            <Route path="/transactions" element={
+            <ListBank/>
+            } />
+            <Route path="/add" element={<AddFunds />} />
+          </Routes>
+        </div>
+      </>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

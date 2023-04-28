@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const InputBank = () => {
+const InputBankTwo = () => {
 
     const [name , setName] = useState("")
     const [amount , setAmount] = useState(0)
@@ -12,7 +12,7 @@ const InputBank = () => {
         e.preventDefault();
         try {
           const body = { name, amount, date, category };
-          const response = await fetch("http://localhost:3000/bank", {
+          const response = await fetch("http://localhost:3000/banktwoinsert", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body)
@@ -67,4 +67,4 @@ const InputBank = () => {
     )
 }
 
-export default InputBank;
+export default InputBankTwo;
