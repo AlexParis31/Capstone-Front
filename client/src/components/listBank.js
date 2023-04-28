@@ -93,11 +93,11 @@ const ListBank = () => {
             </tr>
             </thead>
             <tbody>
-                {category === "Food" ?
+                {category === {hello} ?
                 <>
                     {transactions.map((trans) => (
 
-                        trans.category === "Food" ?
+                        trans.category === {hello} ?
                         <>
                         
                             <tr key={trans.transaction_id}>
