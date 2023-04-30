@@ -18,7 +18,7 @@ const InputBankTwo = () => {
             body: JSON.stringify(body)
           })
     
-          window.location = "/transactions";
+          window.location = "/dashboard/transactions";
         } catch (err) {
           console.error(err.message);
         }

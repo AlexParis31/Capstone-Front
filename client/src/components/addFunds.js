@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import InputBankTwo from "./inputBankTwo";
 
@@ -51,7 +52,7 @@ const AddFunds = () => {
                 body: JSON.stringify(body)
             })
 
-            window.location = "/add";
+            window.location = "/dashboard/add";
             } catch (err) {
             console.error(err.message);
             }
@@ -80,6 +81,12 @@ const AddFunds = () => {
 
     return (
     <>
+
+            <nav className="navbar">
+                <Link to="/dashboard"  className="navItem" >Home</Link>
+                <Link to="/dashboard/transactions" className="navItem" >Transactions</Link>
+                <Link to="/dashboard/add" className="navItem" >Manage Account</Link>
+            </nav>
         <div className="manageCol">
             <div className="addCont">
                 <h2>Bank Account #1:</h2>

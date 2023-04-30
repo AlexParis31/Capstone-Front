@@ -21,7 +21,7 @@ const EditBank = ({ bank }) => {
             }
           );
     
-          window.location = "/"
+          window.location = "/dashboard/transactions"
         } catch (err) {
           console.error(err.message);
         }

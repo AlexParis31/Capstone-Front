@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import { Link } from "react-router-dom";
 
 import EditBank from "./editBank";
 import InputBank from "./inputBank";
@@ -84,6 +85,12 @@ const ListBank = () => {
 
     return (
     <>
+
+        <nav className="navbar">
+            <Link to="/dashboard"  className="navItem" >Home</Link>
+            <Link to="/dashboard/transactions" className="navItem" >Transactions</Link>
+            <Link to="/dashboard/add" className="navItem" >Manage Account</Link>
+        </nav>
 
     <h1 id="trans">Transactions</h1>
 
