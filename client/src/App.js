@@ -4,14 +4,14 @@ import {  BrowserRouter as Router, Route, Routes, Navigate, Link } from "react-r
 
 //components
 
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/pages/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import AddFunds from "./components/addFunds";
-import ListBank from "./components/listBank";
-import HomePage from "./components/HomePage";
+import AddFunds from "./components/funds/addFunds";
+import ListBank from "./components/bank/listBank";
+import HomePage from "./components/pages/HomePage";
 
-function App() {
+const App = () => {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -56,7 +56,7 @@ useEffect(() => {
                 <Navigate to="/dashboard" /> 
               )
             }/>
-            
+
             <Route exact path="/login" element = {
               !isAuthenticated ? ( 
                 <Login setAuth={setAuth}/> 
@@ -70,7 +70,7 @@ useEffect(() => {
               !isAuthenticated ? (
                 <Register setAuth={setAuth}/> 
               ) : ( 
-                <Navigate to="/login" /> 
+                <Navigate to="/dashboard" /> 
               )
             } 
             />

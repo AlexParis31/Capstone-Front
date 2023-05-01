@@ -16,7 +16,7 @@ const Dashboard = ({setAuth}) => {
             });
 
             const parseRes = await response.json()
-            setName(parseRes.user_name)
+            setName(parseRes[0].user_name)
 
         } catch (err) {
             console.error(err.message)
@@ -35,15 +35,18 @@ const Dashboard = ({setAuth}) => {
 
     return (
         <>
-            <nav className="navbar">
-                <Link to="/dashboard"  className="navItem" >Home</Link>
-                <Link to="/dashboard/transactions" className="navItem" >Transactions</Link>
-                <Link to="/dashboard/add" className="navItem" >Manage Account</Link>
-                <button className="btn btn-primary" onClick={e => logout(e)}>Logout</button>
-            </nav>
+    <div className="dashTop">
+        
+        <h1 className="titleName">{name}'s Dashboard</h1>
+        
 
-            <h1 className="text-center my-5">{name}'s Dashboard</h1>
-            
+        <div className="dashBot">
+            <Link to="/dashboard/transactions" className="navItem" >Transactions</Link>
+            <Link to="/dashboard/add" className="navItem" >Manage Account</Link>
+            <button className="btn btn-primary butLeft" onClick={e => logout(e)}>Logout</button>
+        </div>
+        
+    </div>
 
 
         </>

@@ -1,27 +1,25 @@
 import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 
+//components
+
 import EditBank from "./editBank";
 import InputBank from "./inputBank";
 
 
 
 const ListBank = () => {
-
-    const [subject, setSubject] = useState("")
     
     const [transactions, setTransactions] = useState([]);
+
+    const [bankChange, setBankChange] = useState(false);
+
 
     const [expenses, setExpenses] = useState(0);
 
     const [funds, setFunds] = useState(0);
-
-    let USDollar = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    });
-
     
+    const [subject, setSubject] = useState("")
 
     const changeCategory = (event) => {
         event.preventDefault();
@@ -32,53 +30,82 @@ const ListBank = () => {
         setSubject("");
     }
 
-    
+    let USDollar = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+
     
 
-    const deleteBank = async (id) => {
-        try {
-          const deleteBank = await fetch(`http://localhost:3000/bank/${id}`, {
-            method: "DELETE"
-          });
-    
-          setTransactions(transactions.filter(bank => bank.transaction_id !== id));
-        } catch (err) {
-          console.error(err.message);
-        }
-      };
 
     const getBank = async () => {
         try {
-            const response = await fetch("http://localhost:3000/bank");
+            const response = await fetch("http://localhost:3000/dashboard/", {
+                method: "GET",
+                headers: { token: localStorage.token }
+                });
             const jsonData = await response.json();
-            const allBanks = jsonData.allBanks;
-            const sumFunds = jsonData.sumFunds;
 
+            setTransactions(jsonData)
 
-            setTransactions(allBanks)
-            setExpenses(sumFunds)
+            // setExpenses(sumFunds)
+            // const allBanks = jsonData.allBanks;
+            // const sumFunds = jsonData.sumFunds;
             
         } catch (err) {
             console.error(err.message);
         }
     };
 
-    const getFunds = async () => {
-        try {
-            const response = await fetch("http://localhost:3000/myfunds");
-            const jsonData = await response.json();
-            const data = jsonData[0].funds;
 
-            setFunds(data)
+    const deleteBank = async (id) => {
+        try {
+          const deleteBank = await fetch(`http://localhost:3000/dashboard/bank/${id}`, {
+            method: "DELETE",
+            headers: { token: localStorage.token }
+          });
+    
+          setTransactions(transactions.filter(bank => bank.bank_id !== id));
+          window.location = "/dashboard/transactions"
+        } catch (err) {
+          console.error(err.message);
+        }
+      };
+
+
+    const getExpenses = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/dashboard/expenses", {
+                method: "GET",
+                headers: { token: localStorage.token }
+                });
+                const jsonData = await response.json();
+                setExpenses(jsonData.funds);
+            
         } catch (err) {
             console.error(err.message)
         }
     }
 
+    const getFunds = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/dashboard/funds", {
+                method: "GET",
+                headers: { token: localStorage.token }
+                });
+                const jsonData = await response.json();
+                setFunds(jsonData.funds);
+            
+        } catch (err) {
+            console.error(err.message)
+        }
+    };
+
     useEffect(() => {
         getBank();
+        getExpenses();
         getFunds();
-    }, []);
+    }, [bankChange]);
 
     console.log(transactions)
 
@@ -98,10 +125,10 @@ const ListBank = () => {
         <form className="inputField" onSubmit={changeCategory}>
                 <label className="labelSrc">Search Transaction:</label>
                 <input type="text" className="form-control" name = "myInput"/>
-                <button className="btn btn-success" type="submit">Search</button>
+                <button className="btn btn-success alignBtn" type="submit">Search</button>
         </form> 
 
-        <button className ="btn reset" onClick={()=>reset()}>Show All</button> 
+        <button className ="btn reset alignBtn" onClick={()=>reset()}>Show All</button> 
 
         <div className="remFunds">
             <h2>Remaining Funds:</h2> 
@@ -111,11 +138,11 @@ const ListBank = () => {
 
     <details className="details">
         <summary>Add Transaction</summary>
-        <InputBank/>
+        <InputBank setBankChange={setBankChange} />
     </details>
 
     <div className="row justify-content-center">
-        <div className="col-md-12">
+        <div className="col-md-10">
          <table className="table table-striped mt-5 text-center">
             <thead>
             <tr className="tHead">
@@ -131,7 +158,7 @@ const ListBank = () => {
 
                     subject === trans.category || subject === trans.name ?
                         <>
-                            <tr key={trans.transaction_id}>
+                            <tr key={trans.bank_id}>
                                 
                                 <td>{trans.name}</td>
                                 <td>{USDollar.format(trans.amount)}</td>
@@ -143,13 +170,13 @@ const ListBank = () => {
                                     <EditBank bank = {trans}/>
                                 </td>
                                 <td>
-                                    <button className="btn btn-danger" onClick={() => deleteBank(trans.transaction_id)}>Delete</button>
+                                    <button className="btn btn-danger" onClick={() => deleteBank(trans.bank_id)}>Delete</button>
                                 </td>
                             </tr>
                         </>
                     : subject === ("") ?
                         <>
-                            <tr key={trans.transaction_id}>
+                            <tr key={trans.bank_id}>
                                 <td>{trans.name}</td>
                                 <td>{USDollar.format(trans.amount)}</td>
                                 <td>{trans.date}</td>
@@ -160,7 +187,7 @@ const ListBank = () => {
                                     <EditBank bank = {trans}/>
                                 </td>
                                 <td>
-                                    <button className="btn btn-danger" onClick={() => deleteBank(trans.transaction_id)}>Delete</button>
+                                    <button className="btn btn-danger" onClick={() => deleteBank(trans.bank_id)}>Delete</button>
                                 </td>
                             </tr>
                         </>

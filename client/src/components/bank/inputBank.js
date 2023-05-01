@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const InputBank = () => {
+const InputBank = ({setBankChange}) => {
 
     const [name , setName] = useState("")
     const [amount , setAmount] = useState(0)
@@ -11,23 +11,33 @@ const InputBank = () => {
     const handleSubmit = async e => {
         e.preventDefault();
         try {
+
+            const myHeaders = new Headers();
+
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("token", localStorage.token)
+
           const body = { name, amount, date, category };
-          const response = await fetch("http://localhost:3000/bank", {
+          const response = await fetch("http://localhost:3000/dashboard/bank", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: myHeaders,
             body: JSON.stringify(body)
           })
+
+          const parseResponse = await response.json();
+          console.log("this" + parseResponse)
+
+          setBankChange(true);
+          setName("");
+          setAmount("");
+          setDate("");
+          setCategory("");
     
           window.location = "/dashboard/transactions";
         } catch (err) {
           console.error(err.message);
         }
       };
-
-    
-
-
-
 
     return (
         <>

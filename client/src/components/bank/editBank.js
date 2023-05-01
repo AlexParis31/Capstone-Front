@@ -8,15 +8,21 @@ const EditBank = ({ bank }) => {
   const [category, setCategory ] = useState(bank.category);
 
   //edit transaction function
-  const updateTransaction = async e => {
-        e.preventDefault();
+  const updateTransaction = async id => {
+        
         try {
+
+          const myHeaders = new Headers();
+
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("token", localStorage.token)
+
           const body = { name, amount, date, category };
           const response = await fetch(
-            `http://localhost:3000/bank/${bank.transaction_id}`,
+            `http://localhost:3000/dashboard/bank/${id}`,
             {
               method: "PUT",
-              headers: { "Content-Type": "application/json" },
+              headers: myHeaders,
               body: JSON.stringify(body)
             }
           );
@@ -36,17 +42,17 @@ const EditBank = ({ bank }) => {
 
   return (
     <>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target={`#id${bank.transaction_id}`}>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target={`#id${bank.bank_id}`}>
         Edit
       </button>
 
-      <div className="modal" id={`id${bank.transaction_id}`}>
+      <div className="modal" id={`id${bank.bank_id}`}>
         <div className="modal-dialog">
           <div className="modal-content">
 
             <div className="modal-header">
               <h4 className="modal-title">Edit Transaction</h4>
-              <button type="button" className="close" data-dismiss="modal">&times;</button>
+              <button type="button" className="close" data-bs-dismiss="modal">&times;</button>
             </div>
 
             <div className="modal-body">
@@ -57,8 +63,8 @@ const EditBank = ({ bank }) => {
             </div>
 
             <div className="modal-footer">
-              <button type="button" className="btn btn-warning" data-dismiss="modal" onClick={e => updateTransaction(e)}>Edit</button>
-              <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={() => setAll(bank)}  >Close</button>
+              <button type="button" className="btn btn-warning" data-bs-dismiss="modal" onClick={e => updateTransaction(bank.bank_id)}>Edit</button>
+              <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={() => setAll(bank)}  >Close</button>
             </div>
 
           </div>
