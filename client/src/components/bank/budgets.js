@@ -12,6 +12,11 @@ const Budgets = () => {
         // Set constant for jbank table to be mapped
         const [transactions, setTransactions] = useState([]);
 
+        const [total, setTotal] = useState(0)
+        const [totals, setTotals] = useState(0)
+
+        // const [amount, setAmount] = useState(0)
+
 
         let USDollar = new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -19,21 +24,21 @@ const Budgets = () => {
         });
 
 
-        const getBudget = async () => {
-          try {
-              const response = await fetch("http://localhost:3000/dashboard/budgetplans", {
-                  method: "GET",
-                  headers: { token: localStorage.token }
-                  });
-              const jsonData = await response.json();
-  
-              setBudgets(jsonData)
-  
-              
-          } catch (err) {
-              console.error(err.message);
-          }
-      };
+      const getBudget = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/dashboard/budgetplans", {
+                method: "GET",
+                headers: { token: localStorage.token }
+                });
+            const jsonData = await response.json();
+
+            setBudgets(jsonData)
+
+            
+        } catch (err) {
+            console.error(err.message);
+        }
+    };
 
        
     
@@ -46,6 +51,8 @@ const Budgets = () => {
             const jsonData = await response.json();
 
             setTransactions(jsonData)
+            
+           
 
             
         } catch (err) {
@@ -53,9 +60,34 @@ const Budgets = () => {
         }
     };
 
+    const getSum = async () => {
+      try {
+          const response = await fetch("http://localhost:3000/dashboard/bgtsum", {
+              method: "GET",
+              headers: { token: localStorage.token }
+              });
+          const jsonData = await response.json();
+
+          setTotals(jsonData)
+          console.log(jsonData)
+
+          
+      } catch (err) {
+          console.error(err.message);
+      }
+  };
+
+    // const calculateTotal = (transactions) => {
+    //   const sum = transactions.reduce((acc, transactions) => {
+    //     return acc + transactions.amount;
+    //   }, 0);
+    //   setTotal(sum);
+    // };
+
         useEffect(() => {
         getBank();
         getBudget();
+        getSum();
         }, [bankChange]);
 
     return (
@@ -84,7 +116,7 @@ const Budgets = () => {
 
       <tbody className="tBody">
     
-        {budgets.map((budg) => (
+        {budgets.map((budg) => (          
           
           <tr key={budg.budget_id}>
             <details>
@@ -108,29 +140,55 @@ const Budgets = () => {
                     
                       {transactions.map((trans) => (
 
-                        trans.category === budg.category ?  
+                        trans.category == budg.category ?  
                         <>
+                          
                             <tr key={trans.bank_id}>
-                                <td>{trans.name}</td>
-                                <td>{USDollar.format(trans.amount)}</td>
-                                <td>{trans.date}</td>
-                                <td>{trans.category}</td>
+                              <td>{trans.name}</td>
+                              <td>{USDollar.format(trans.amount)}</td>
+                              <td>{trans.date}</td>
+                              <td>{trans.category}</td>                   
                             </tr>
+
                         </>
                         :
                         <>
                         </>
-                      ))};
+                      ))}
 
                     </tbody>
+
+                    <tfoot>
+                      {totals.map((tots) => (
+
+                        tots.category == budg.category ?       
+                        <>
+                          <th>Total:</th> 
+                          <th>{USDollar.format(tots.total_amount)}</th>
+                        </>
+                        :
+                        <>
+                        </>
+
+                      ))}
+                    </tfoot>
 
                   </table>
                 </div>
               </div>
             </details>
-            <td> {budg.category} </td>
-                <td> {USDollar.format(budg.budget)} </td>
-                <td> {USDollar.format(budg.budget-expenses)} </td>
+            {totals.map((tots) => (
+
+                  tots.category == budg.category ?       
+              <>
+              <td> {budg.category} </td>
+              <td> {USDollar.format(budg.budget)} </td>
+              <td> {USDollar.format(budg.budget-tots.total_amount)} </td>
+              </>
+              :
+              <></>
+              
+              ))}
           </tr>                  
         ))};
       </tbody>
