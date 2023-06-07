@@ -9,35 +9,52 @@ import InputBank from "./inputBank";
 
 
 const ListBank = () => {
+
+// CONSTANTS
     
+// Set constant for jbank table to be mapped
     const [transactions, setTransactions] = useState([]);
 
+// idk
     const [bankChange, setBankChange] = useState(false);
 
-
+// This amount will be subtracted by funds
     const [expenses, setExpenses] = useState(0);
 
+// This minus expenses equals remaining funds
     const [funds, setFunds] = useState(0);
     
+// This represents whatever is in the search bar
     const [subject, setSubject] = useState("")
 
+////////////////////////////////
+
+
+// FUNCTIONS
+
+// Changes constant subject to whatever is in search bar
     const changeCategory = (event) => {
         event.preventDefault();
         setSubject(event.target.elements.myInput.value)
       }
 
+// Triggered when pressing "Show All" to reset search bar
     const reset = (event) => {
         setSubject("");
     }
 
+// Makes every number currency
     let USDollar = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
     });
+/////////////////////////////
 
-    
 
 
+// FETCH REQUESTS
+
+// Get request to display transactions "jbanks"
     const getBank = async () => {
         try {
             const response = await fetch("http://localhost:3000/dashboard/", {
@@ -54,7 +71,7 @@ const ListBank = () => {
         }
     };
 
-
+// Delete request for each transaction in table
     const deleteBank = async (id) => {
         try {
           const deleteBank = await fetch(`http://localhost:3000/dashboard/bank/${id}`, {
@@ -69,7 +86,7 @@ const ListBank = () => {
         }
       };
 
-
+// Get request for sum of all expenses through "jbanks"
     const getExpenses = async () => {
         try {
             const response = await fetch("http://localhost:3000/dashboard/expenses", {
@@ -84,6 +101,7 @@ const ListBank = () => {
         }
     }
 
+// Get request for funds added to account through table "jfunds"
     const getFunds = async () => {
         try {
             const response = await fetch("http://localhost:3000/dashboard/funds", {
@@ -98,6 +116,8 @@ const ListBank = () => {
         }
     };
 
+///////////////////
+
     useEffect(() => {
         getBank();
         getExpenses();
@@ -105,6 +125,8 @@ const ListBank = () => {
     }, [bankChange]);
 
     console.log(transactions)
+
+/////////////////////
 
 
     return (
@@ -116,9 +138,10 @@ const ListBank = () => {
             <Link to="/dashboard/add" className="navItem" >Manage Account</Link>
             <Link to="/dashboard/budgets" className="navItem" >Budgets</Link>
         </nav>
-
+{/* Title */}
     <h1 id="trans">Transactions</h1>
 
+{/* Search Bar */}
     <div className="showAll">
         <form className="inputField" onSubmit={changeCategory}>
                 <label className="labelSrc">Search Transaction:</label>
@@ -134,11 +157,13 @@ const ListBank = () => {
         </div>
     </div>
 
+{/* Add Transactions */}
     <details className="details">
         <summary>Add Transaction</summary>
         <InputBank setBankChange={setBankChange} />
     </details>
 
+{/* Table */}
     <div className="row justify-content-center">
         <div className="col-md-10">
          <table className="table table-striped mt-5 text-center">
