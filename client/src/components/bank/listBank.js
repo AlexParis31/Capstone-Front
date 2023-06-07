@@ -48,9 +48,6 @@ const ListBank = () => {
 
             setTransactions(jsonData)
 
-            // setExpenses(sumFunds)
-            // const allBanks = jsonData.allBanks;
-            // const sumFunds = jsonData.sumFunds;
             
         } catch (err) {
             console.error(err.message);
@@ -117,6 +114,7 @@ const ListBank = () => {
             <Link to="/dashboard"  className="navItem" >Home</Link>
             <Link to="/dashboard/transactions" className="navItem" >Transactions</Link>
             <Link to="/dashboard/add" className="navItem" >Manage Account</Link>
+            <Link to="/dashboard/budgets" className="navItem" >Budgets</Link>
         </nav>
 
     <h1 id="trans">Transactions</h1>

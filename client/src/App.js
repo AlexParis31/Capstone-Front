@@ -10,6 +10,8 @@ import Register from "./components/Register";
 import AddFunds from "./components/funds/addFunds";
 import ListBank from "./components/bank/listBank";
 import HomePage from "./components/pages/HomePage";
+import Budgets from "./components/bank/budgets";
+import CreateBudgets from "./components/bank/createBudgets";
 
 const App = () => {
 
@@ -92,6 +94,10 @@ useEffect(() => {
                             } />
 
             <Route path="/dashboard/add" element={<AddFunds />} />
+
+            <Route path="/dashboard/budgets" element={<Budgets />} />
+
+            <Route path="/dashboard/createbudget" element={<CreateBudgets />} />
           </Routes>
         </div>
       </Router>
