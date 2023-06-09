@@ -42,8 +42,8 @@ const Dashboard = ({setAuth}) => {
 
         <div className="dashBot">
             <Link to="/dashboard/transactions" className="navItem" >Transactions</Link>
-            <Link to="/dashboard/add" className="navItem" >Manage Account</Link>
             <Link to="/dashboard/budgets" className="navItem" >Budgets</Link>
+            <Link to="/dashboard/add" className="navItem" >Manage Account</Link>
             <button className="btn btn-primary butLeft" onClick={e => logout(e)}>Logout</button>
         </div>
         

@@ -110,8 +110,8 @@ const AddFunds = () => {
             <nav className="navbar">
                 <Link to="/dashboard"  className="navItem" >Home</Link>
                 <Link to="/dashboard/transactions" className="navItem" >Transactions</Link>
-                <Link to="/dashboard/add" className="navItem" >Manage Account</Link>
                 <Link to="/dashboard/budgets" className="navItem" >Budgets</Link>
+                <Link to="/dashboard/add" className="navItem" >Manage Account</Link>
             </nav>
         <div className="manageCol">
             <div className="addCont">

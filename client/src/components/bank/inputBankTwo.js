@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
-const InputBank = ({setBankChange}) => {
+const InputBank = ({setBankChange, variables}) => {
 
     const [name , setName] = useState("")
     const [amount , setAmount] = useState(0)
     const [date , setDate] = useState("")
-    const [category, setCategory] = useState("")
+    const [category, setCategory] = useState(variables)
+    
 
 
     const handleSubmit = async e => {
@@ -40,40 +41,52 @@ const InputBank = ({setBankChange}) => {
       };
 
     return (
-        <>
+        <div className="b-flex">
             
-            <form className="d-flex" onSubmit={handleSubmit}>
-                <label className="labelAdd">For: </label>
+            <form className="b-flex" onSubmit={handleSubmit}>
+                <div className="b-flex">
+                <label className="labelAdd">Name </label>
                 <input
                     type="text"
                     className="form-control"
                     value={name}
                     onChange={e => setName(e.target.value)}
                     />
-                <label className="labelAdd">Amount: </label>
+                </div>
+
+                <div className="b-flex">
+                <label className="labelAdd">Amount </label>
                 <input
                     type="text"
                     className="form-control"
                     value={amount}
                     onChange={e => setAmount(e.target.value)}
                     />
-                <label className="labelAdd">Date: </label>
+                    </div>
+
+
+                <div className="b-flex">
+                <label className="labelAdd">Date </label>
                 <input
                     type="text"
                     className="form-control"
                     value={date}
                     onChange={e => setDate(e.target.value)}
                     />
-                <label className="labelAdd">Category: </label>
+
+                </div>
+                <div className="b-flex">
+                <label className="labelAdd">Category </label>
                 <input
                     type="text"
                     className="form-control"
                     value={category}
-                    onChange={e => setCategory(e.target.value)}
+                    onChange={e => setCategory(variables)}
                     />
+                    </div>
                 <button className="btn btn-success">Add</button>
             </form>
-        </>
+        </div>
     )
 }
 

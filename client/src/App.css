@@ -11,6 +11,12 @@ body {
 .table {
  background-color: rgba(33, 159, 54, 0.284);
  margin-bottom: 5em;
+ flex-wrap: wrap;
+}
+
+.two {
+  background-color: rgb(218, 232, 232);
+  width: 35em;
 }
 
 .navbar {
@@ -88,10 +94,18 @@ body {
 }
 
 .d-flex {
-  margin-bottom: 2em;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
 }
+
+.b-flex {
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ margin: 10px 0
+}
+
+
 
 .green {
   color: green;
@@ -201,4 +215,11 @@ body {
 .confirm {
   margin: 0 0 2em 2em;
 }
+
+.diss {}
+
+.foot {
+  height: 3em;
+}
+
 

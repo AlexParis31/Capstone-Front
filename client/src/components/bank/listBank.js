@@ -135,8 +135,8 @@ const ListBank = () => {
         <nav className="navbar">
             <Link to="/dashboard"  className="navItem" >Home</Link>
             <Link to="/dashboard/transactions" className="navItem" >Transactions</Link>
-            <Link to="/dashboard/add" className="navItem" >Manage Account</Link>
             <Link to="/dashboard/budgets" className="navItem" >Budgets</Link>
+            <Link to="/dashboard/add" className="navItem" >Manage Account</Link> 
         </nav>
 {/* Title */}
     <h1 id="trans">Transactions</h1>
@@ -218,7 +218,7 @@ const ListBank = () => {
                         <>
                         </>
                     )
-                        )};
+                        )}
             </tbody>
         </table>
         </div>
