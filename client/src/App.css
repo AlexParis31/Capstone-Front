@@ -10,13 +10,13 @@ body {
 
 .table {
  background-color: rgba(33, 159, 54, 0.284);
- margin-bottom: 5em;
- flex-wrap: wrap;
+ 
 }
 
 .two {
   background-color: rgb(218, 232, 232);
-  width: 35em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .navbar {
@@ -216,10 +216,33 @@ body {
   margin: 0 0 2em 2em;
 }
 
-.diss {}
+
 
 .foot {
   height: 3em;
 }
 
+details > summary {
+  list-style-type: '▶️';
+  text-align: left;
+}
 
+details[open] > summary {
+  list-style-type: '🔽';
+}
+
+details {
+  padding: 0.5rem;
+}
+
+details[open] > summary {
+  margin-bottom: 0.5rem;
+}
+
+.trone {
+  line-height: 80px
+};
+
+.three {
+  margin: 2em 
+};

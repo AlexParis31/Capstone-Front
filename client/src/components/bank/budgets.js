@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import InputBankTwo from "../bank/inputBankTwo";
 import EditBankTwo from "../bank/editBankTwo";
 
+
+
+
 const Budgets = () => {
 
   // For InputBankTwo variable
@@ -23,12 +26,13 @@ const Budgets = () => {
 
   const [budtotals, setBudtotals] = useState([])
 
+  const [yes, setYes] = useState(true)
+
   // Currency Filter
   let USDollar = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
   });
-
 
 
 
@@ -84,6 +88,7 @@ const Budgets = () => {
     }
   };
 
+  // Fetch sum of ALL budgetting transactions
   const getSums = async () => {
     try {
       const response = await fetch("http://localhost:3000/dashboard/bgtsums", {
@@ -101,6 +106,7 @@ const Budgets = () => {
     }
   };
 
+  // Fetch sum of ALL limits for all categories in the budget.
   const getSumsTwo = async () => {
     try {
       const response = await fetch("http://localhost:3000/dashboard/bgtsumstwo", {
@@ -118,6 +124,7 @@ const Budgets = () => {
     }
   };
 
+  // Delete budget row
   const deleteBudget = async (id) => {
     try {
       const deleteBank = await fetch(`http://localhost:3000/dashboard/budgetplan/${id}`, {
@@ -155,104 +162,46 @@ const Budgets = () => {
     </nav>
 
   
-      <h2 className="titleAdd">Budget #1</h2>
+    <h2 className="titleAdd">Budget #1</h2>
 
-      <table className="table table-striped mt-5 text-center">
+    <Link to="/dashboard/createbudget"  className="btn btn-primary my-5 mx-5" >Create a Category!</Link>
 
+
+    <div className="row justify-content-center">
+      <div className="col-md-10">
+
+
+{/* Main Table starts here */}
+        <table className="table three table-striped mt-5 text-center">
+
+{/* Header Row */}
         <thead>
           <tr className="tHead">
-              <th></th>
+              
               <th>Category</th>
               <th>Limit</th>
               <th>Amount Left</th>
           </tr>
         </thead>
 
+{/* Body */}
         <tbody className="tBody">
       
-          {budgets.map((budg) => (          
+          {budgets.map((budg) => (  
+            yes ?
+            <>     
+
+
             
-            <tr key={budg.budget_id}>
-              
-              
-              <details>
+{/* Budget Rows */}
+            <tr className="trone" key={budg.budget_id}>
 
-                <summary></summary>
-
-                <div className="row justify-content-center">
-                  <div className="col-md-10">
-                    <table className="table two table-striped mt-5  text-center">
-
-                      <thead>
-                        <tr className="tHead">
-                          <th>Transaction</th>
-                          <th>Amount</th>
-                          <th>Date</th>
-                          <th>Category</th>
-                        </tr>
-                      </thead>
-
-                      <tbody className="tBody">
-                        
-                      
-                        {transactions.map((trans) => (
-
-                          trans.category === budg.category ?  
-                          <>
-                            
-                              <tr key={trans.bank_id}>
-                                <td>{trans.name}</td>
-                                <td>{USDollar.format(trans.amount)}</td>
-                                <td>{trans.date}</td>
-                                <td>{trans.category}</td>                   
-                              </tr>
-
-                          </>
-                          :
-                          <>
-                          </>
-                        ))}
-                        
-
-                      </tbody>
-                      
-
-                      <tfoot className="foot">
-                        {totals.map((tots) => (
-
-                          budg.category === tots.category ?       
-                          <>
-                            <th>Total {tots.category}:</th> 
-                            <th>{USDollar.format(tots.total_amount)}</th>
-                            <th></th>
-                            <th>
-                              
-                            </th>
-                          </>
-                          :
-                          <>
-                          
-                          </>
-
-                        ))}
-                      </tfoot>
-
-                    </table>
-                    
-                      <div className="my-5">
-                        <InputBankTwo  setBankChange={setBankChange} variables={budg.category} />
-                      </div>
-                              
-                  </div>
-                  
-                </div>
                 
-              </details>
-              
-                  
-                
+{/* First-Second Column of Main */}
               <td> {budg.category} </td>
               <td> {USDollar.format(budg.budget)} </td>
+
+{/* Third Column (Amount Left) */}
               <td>   
                 {totals.map((tots) => (
                   tots.category === budg.category ? 
@@ -264,17 +213,101 @@ const Budgets = () => {
                   </>
                 ))}
               </td>
+{/* Edit and Delete columns for Main Table */}
               <td>
                 <EditBankTwo budg = {budg}/>
               </td>
               <td>
                 <button className="btn btn-danger" onClick={() => deleteBudget(budg.budget_id)}>Delete</button>
               </td>
-              
+            </tr>  
 
-            </tr>                  
-          ))}
-        </tbody>
+
+
+
+
+
+
+
+
+{/* SUB TABLE FOR TRANSACTIONS (HIDDEN ROW) */}
+            <tr className="trtwo">
+              <td colspan="6">
+              <details>
+
+                <summary className="left"> View {budg.category} Transactions </summary>
+
+                <div className="row justify-content-center">
+                  <div className="col-md-10">
+                    <table className="table two table-striped mt-5  text-center">
+
+{/* Headers of sub table */}
+                      <thead>
+                        <tr className="tHead">
+                          <th>Transaction</th>
+                          <th>Amount</th>
+                          <th>Date</th>
+                          <th>Category</th>
+                        </tr>
+                      </thead>
+{/* Body of sub table */}
+                      <tbody className="tBody">
+                         
+                        {transactions.map((trans) => (
+
+                          trans.category === budg.category ?  
+                          <> 
+                              <tr key={trans.bank_id}>
+                                <td>{trans.name}</td>
+                                <td>{USDollar.format(trans.amount)}</td>
+                                <td>{trans.date}</td>
+                                <td>{trans.category}</td>                   
+                              </tr>
+                          </>
+                          :
+                          <></>
+                        ))}
+
+                      </tbody>
+
+{/* Footer of sub table with totals */}
+                      <tfoot className="foot">
+                        {totals.map((tots) => (
+
+                          budg.category === tots.category ?       
+                          <>
+                            <th>Total {tots.category}:</th> 
+                            <th>{USDollar.format(tots.total_amount)}</th>
+                            <th></th>
+                            <th></th>
+                          </>
+                          :
+                          <></>
+                        ))}
+                      </tfoot>
+
+                    </table>
+                    
+{/* Add Transaction form for each budgetting category */}
+                    <div className="my-5">
+                      <InputBankTwo  setBankChange={setBankChange} variables={budg.category} />
+                    </div>         
+                  </div>    
+                </div>
+                
+              </details>
+
+              </td>
+            </tr> 
+{/* After the two <tr> tags we have the last part of the conditional at the top from "budgets" */}
+            </>   
+            :
+            <></>
+                           
+          ))} 
+      </tbody>
+
+{/* Footer of Main Table */}
         <tfoot className="foot">
           <th>TOTALS:</th>
           <th></th>
@@ -283,17 +316,10 @@ const Budgets = () => {
             {USDollar.format(budtotals-suptotals)}
           </th>
         </tfoot>
-      </table>                  
-                  
-      <Link to="/dashboard/createbudget"  className="btn btn-primary my-5 mx-5" >Create a Category!</Link>
-
-      <div className="addFunds">
-        <details>
-            <summary>Add Transaction</summary>
-            <InputBankTwo setBankChange={setBankChange} variables="food" />
-        </details>
-      </div>
-            
+      </table>     
+    </div>
+    </div>
+      
   
   </>
   )};
