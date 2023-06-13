@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // Add a transaction to the budgets page
-import InputBankTwo from "../bank/inputBankTwo";
-import EditBankTwo from "../bank/editBankTwo";
+import InputBankTwo from "./inputBankTwo";
+import EditBankTwo from "./editBankTwo";
 
 
 
