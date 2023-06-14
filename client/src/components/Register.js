@@ -20,8 +20,7 @@ const Register = ({setAuth}) => {
         e.preventDefault();
         try {
           const body = { email, password, name };
-          const response = await fetch(
-            "/auth/register",
+          const response = await fetch("/auth/register",
             {
               method: "POST",
               headers: {
