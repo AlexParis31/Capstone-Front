@@ -21,7 +21,7 @@ const Register = ({setAuth}) => {
         try {
           const body = { email, password, name };
           const response = await fetch(
-            "http://localhost:3000/auth/register",
+            "/auth/register",
             {
               method: "POST",
               headers: {

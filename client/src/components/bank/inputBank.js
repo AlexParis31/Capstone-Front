@@ -18,7 +18,7 @@ const InputBank = ({setBankChange}) => {
             myHeaders.append("token", localStorage.token)
 
           const body = { name, amount, date, category };
-          const response = await fetch("http://localhost:3000/dashboard/bank", {
+          const response = await fetch("/dashboard/bank", {
             method: "POST",
             headers: myHeaders,
             body: JSON.stringify(body)

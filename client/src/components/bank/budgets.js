@@ -39,7 +39,7 @@ const Budgets = () => {
   // Fetch categories for budget (Category & Limit) 
   const getBudget = async () => {
     try {
-      const response = await fetch("http://localhost:3000/dashboard/budgetplan", {
+      const response = await fetch("/dashboard/budgetplan", {
         method: "GET",
         headers: { token: localStorage.token }
         });
@@ -56,7 +56,7 @@ const Budgets = () => {
   // Fetch transactions for budgetting (transaction, amount, date, category)
   const getBank = async () => {
     try {
-      const response = await fetch("http://localhost:3000/dashboard/bgtex", {
+      const response = await fetch("/dashboard/bgtex", {
         method: "GET",
         headers: { token: localStorage.token }
         });
@@ -73,7 +73,7 @@ const Budgets = () => {
   // Fetch sum of transactions grouped by category
   const getSum = async () => {
     try {
-      const response = await fetch("http://localhost:3000/dashboard/bgtsum", {
+      const response = await fetch("/dashboard/bgtsum", {
         method: "GET",
         headers: { token: localStorage.token }
         });
@@ -91,7 +91,7 @@ const Budgets = () => {
   // Fetch sum of ALL budgetting transactions
   const getSums = async () => {
     try {
-      const response = await fetch("http://localhost:3000/dashboard/bgtsums", {
+      const response = await fetch("/dashboard/bgtsums", {
         method: "GET",
         headers: { token: localStorage.token }
         });
@@ -109,7 +109,7 @@ const Budgets = () => {
   // Fetch sum of ALL limits for all categories in the budget.
   const getSumsTwo = async () => {
     try {
-      const response = await fetch("http://localhost:3000/dashboard/bgtsumstwo", {
+      const response = await fetch("/dashboard/bgtsumstwo", {
         method: "GET",
         headers: { token: localStorage.token }
         });
@@ -127,7 +127,7 @@ const Budgets = () => {
   // Delete budget row
   const deleteBudget = async (id) => {
     try {
-      const deleteBank = await fetch(`http://localhost:3000/dashboard/budgetplan/${id}`, {
+      const deleteBank = await fetch(`/dashboard/budgetplan/${id}`, {
         method: "DELETE",
         headers: { token: localStorage.token }
       });

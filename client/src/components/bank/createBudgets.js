@@ -17,7 +17,7 @@ const InputBudget = () => {
             myHeaders.append("token", localStorage.token)
 
             const body = { category, budget };
-          const response = await fetch("http://localhost:3000/dashboard/budgetplan", {
+          const response = await fetch("/dashboard/budgetplan", {
             method: "POST",
             headers: myHeaders ,
             body: JSON.stringify(body)

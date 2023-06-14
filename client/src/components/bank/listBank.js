@@ -57,7 +57,7 @@ const ListBank = () => {
 // Get request to display transactions "jbanks"
     const getBank = async () => {
         try {
-            const response = await fetch("http://localhost:3000/dashboard/", {
+            const response = await fetch("/dashboard/", {
                 method: "GET",
                 headers: { token: localStorage.token }
                 });
@@ -74,7 +74,7 @@ const ListBank = () => {
 // Delete request for each transaction in table
     const deleteBank = async (id) => {
         try {
-          const deleteBank = await fetch(`http://localhost:3000/dashboard/bank/${id}`, {
+          const deleteBank = await fetch(`/dashboard/bank/${id}`, {
             method: "DELETE",
             headers: { token: localStorage.token }
           });
@@ -89,7 +89,7 @@ const ListBank = () => {
 // Get request for sum of all expenses through "jbanks"
     const getExpenses = async () => {
         try {
-            const response = await fetch("http://localhost:3000/dashboard/expenses", {
+            const response = await fetch("/dashboard/expenses", {
                 method: "GET",
                 headers: { token: localStorage.token }
                 });
@@ -104,7 +104,7 @@ const ListBank = () => {
 // Get request for funds added to account through table "jfunds"
     const getFunds = async () => {
         try {
-            const response = await fetch("http://localhost:3000/dashboard/funds", {
+            const response = await fetch("/dashboard/funds", {
                 method: "GET",
                 headers: { token: localStorage.token }
                 });

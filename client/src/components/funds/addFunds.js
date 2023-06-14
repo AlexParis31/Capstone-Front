@@ -62,7 +62,7 @@ const AddFunds = () => {
             setShow(true)
             e.preventDefault();
             try {
-              const response = await fetch("http://localhost:3000/dashboard/fundscreate", {
+              const response = await fetch("/dashboard/fundscreate", {
                 method: "POST",
                 headers: { token: localStorage.token },
                 body: JSON.stringify()
@@ -82,7 +82,7 @@ const AddFunds = () => {
     
               const body = { funds };
               const response = await fetch(
-                `http://localhost:3000/dashboard/fundscreate/${id}`,
+                `/dashboard/fundscreate/${id}`,
                 {
                   method: "PUT",
                   headers: myHeaders,

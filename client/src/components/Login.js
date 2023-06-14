@@ -19,7 +19,7 @@ const onSubmitForm = async e => {
     try {
       const body = { email, password };
       const response = await fetch(
-        "http://localhost:3000/auth/login",
+        "/auth/login",
         {
           method: "POST",
           headers: {

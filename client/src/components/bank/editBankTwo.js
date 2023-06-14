@@ -18,7 +18,7 @@ const EditBankTwo = ({ budg }) => {
 
           const body = { category, budget };
           const response = await fetch(
-            `http://localhost:3000/dashboard/budgetplan/${id}`,
+            `/dashboard/budgetplan/${id}`,
             {
               method: "PUT",
               headers: myHeaders,

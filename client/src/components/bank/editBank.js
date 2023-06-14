@@ -18,8 +18,11 @@ const EditBank = ({ bank }) => {
             myHeaders.append("token", localStorage.token)
 
           const body = { name, amount, date, category };
+
+          // proxy 
+
           const response = await fetch(
-            `http://localhost:3000/dashboard/bank/${id}`,
+            `/dashboard/bank/${id}`,
             {
               method: "PUT",
               headers: myHeaders,

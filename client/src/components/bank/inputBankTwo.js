@@ -19,7 +19,7 @@ const InputBank = ({setBankChange, variables}) => {
             myHeaders.append("token", localStorage.token)
 
           const body = { name, amount, date, category };
-          const response = await fetch("http://localhost:3000/dashboard/bgtex", {
+          const response = await fetch("/dashboard/bgtex", {
             method: "POST",
             headers: myHeaders,
             body: JSON.stringify(body)
