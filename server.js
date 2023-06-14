@@ -30,18 +30,7 @@ app.use("/auth", require("./routes/jwtAuth"));
 app.use("/dashboard", require("./routes/dashboard"));
 
 
-app.post("/banktwo", async (req, res) => {
-  try {
-    const newFunds = await pool.query(
-      "CREATE TABLE transactionsTwo( transaction_id SERIAL PRIMARY KEY, name varchar(30), amount numeric(12,2), date varchar(30), category varchar(30))"
-    );
 
-    res.json(newFunds);
-  } catch (err) {
-    console.error(err.message);
-  }
- 
-});
 
 
 app.listen(PORT, () => {
