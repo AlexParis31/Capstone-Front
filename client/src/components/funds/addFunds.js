@@ -17,46 +17,7 @@ const AddFunds = () => {
         });
 
 
-        // const getBank = async () => {
-        //     try {
-        //         const response = await fetch("http://localhost:3000/dashboard/bank");
-        //         const jsonData = await response.json();
-        //         const sumFunds = jsonData.sumFunds;
-    
-        //         setExpenses(sumFunds)
-                
-        //     } catch (err) {
-        //         console.error(err.message);
-        //     }
-        // };
-
-        // const getFunds = async () => {
-        //     try {
-        //         const response = await fetch("http://localhost:3000/dashboard/myfunds");
-        //         const jsonData = await response.json();
-        //         const data = jsonData[0].funds;
-
-        //         setFundsTwo(data)
-        //     } catch (err) {
-        //         console.error(err.message)
-        //     }
-        // }
-       
-        // const addFunds = async e => {
-        //     e.preventDefault();
-        //     try {
-        //     const body = { funds };
-        //     const response = await fetch("http://localhost:3000/dashboard/fundsjn", {
-        //         method: "POST",
-        //         headers: { "Content-Type": "application/json" },
-        //         body: JSON.stringify(body)
-        //     })
-
-        //     window.location = "/dashboard/add";
-        //     } catch (err) {
-        //     console.error(err.message);
-        //     }
-        // };
+     
 
         const createBudget = async e => {
             setShow(true)
