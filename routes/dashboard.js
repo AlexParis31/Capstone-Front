@@ -7,7 +7,7 @@ const authorization = require('../middleware/authorization')
 /////////////// TRANSACTIONS PAGE ///////////////
 
 // Create transactions
-  router.post("/bank", authorization, async (req, res) => {
+  router.post("/bank", async (req, res) => {
     try {
       const { name, amount, date, category } = req.body;
       const newBank = await pool.query("INSERT INTO jbanks (user_id, name, amount, date, category) VALUES($1, $2, $3, $4, $5) RETURNING *",
