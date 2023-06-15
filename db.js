@@ -15,7 +15,7 @@ const proConfig = process.env.HEROKU_POSTGRESQL_PURPLE_URL; //heroku addons
 
 const pool = new Pool({
   connectionString:
-    process.env.NODE_ENV === "production" ? proConfig : devConfig,
+    proConfig 
 });
 
 module.exports = pool;
