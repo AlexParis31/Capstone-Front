@@ -22,7 +22,7 @@ const authorization = require('../middleware/authorization')
   });
 
 // Get all transactions 
-  router.get("/", authorization, async (req, res) => {
+  router.get("/",  async (req, res) => {
     try {
       const user = await pool.query("SELECT jusers.user_name, jbanks.bank_id, jbanks.name, jbanks.amount, jbanks.date, jbanks.category FROM jusers LEFT JOIN jbanks ON jusers.user_id = jbanks.user_id WHERE jusers.user_id = $1 ORDER BY date DESC",
       [req.user.id]
