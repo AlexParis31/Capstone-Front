@@ -8,7 +8,7 @@ const authorization = require("../middleware/authorization");
 
 // registering
 
-router.post("/register", validInfo ,async (req,res) => {
+router.post("/register" ,async (req,res) => {
     try {
         
         //1. destructure the req.body(name, email, password)
