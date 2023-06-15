@@ -7,7 +7,7 @@ const authorization = require('../middleware/authorization')
 /////////////// TRANSACTIONS PAGE ///////////////
 
 // Create transactions
-  router.post("/bank", async (req, res) => {
+  router.post("/bank", authorization, async (req, res) => {
     try {
       const { name, amount, date, category } = req.body;
       const newBank = await pool.query("INSERT INTO jbanks (user_id, name, amount, date, category) VALUES($1, $2, $3, $4, $5) RETURNING *",
@@ -22,7 +22,7 @@ const authorization = require('../middleware/authorization')
   });
 
 // Get all transactions 
-  router.get("/",  async (req, res) => {
+  router.get("/", authorization, async (req, res) => {
     try {
       const user = await pool.query("SELECT jusers.user_name, jbanks.bank_id, jbanks.name, jbanks.amount, jbanks.date, jbanks.category FROM jusers LEFT JOIN jbanks ON jusers.user_id = jbanks.user_id WHERE jusers.user_id = $1 ORDER BY date DESC",
       [req.user.id]

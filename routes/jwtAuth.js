@@ -8,7 +8,7 @@ const authorization = require("../middleware/authorization");
 
 // registering
 
-router.post("/register" ,async (req,res) => {
+router.post("/register", validInfo ,async (req,res) => {
     try {
         
         //1. destructure the req.body(name, email, password)
@@ -87,7 +87,7 @@ router.post("/login", validInfo, async (req,res) => {
     }
 });
 
-router.get('/is-verify',  async (req, res) => {
+router.get('/is-verify', authorization, async (req, res) => {
     try {
         res.json(true);
     } catch (err) {
