@@ -22,8 +22,12 @@ Each new user can create an account by registering with an email, password, and 
 
 ## Technologies Used
 
-Per(n)sonal Budgetting is a **full-stack** web application built by using the **PERN stack**; 
+Per(n)sonal Budgetting is a **full-stack** web application built by using the **PERN stack** and is able to perform all **CRUD** operations.
 
-The app was built entirely in **JavaScript** using **React** as a Front-End Library (with **Bootstrap** stylying), **Express** as a Back-End Framework, **Node.js** as a runtime environment and **PostgreSQL** as a relational database. This app is able to perform all **CRUD** operations
+The app was built entirely in **JavaScript** using: 
+* **React** as a Front-End Library (with **Bootstrap** stylying) 
+* **Express** as a Back-End Framework,
+* **Node.js** as a runtime environment
+* **PostgreSQL** as a relational database. 
 
 In addition, the application implements **JWT (JSON Web Token)** authentication and authorization mechanisms, ensuring secure user registration and login processes.
