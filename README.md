@@ -2,6 +2,8 @@
 
 Per(n)sonal Budgetting is an application meant for users to keep track of their expenses and create customizable budgets for future spendings.
 
+https://pernsonalbudgetting.herokuapp.com/
+
 ## Description 
 
 Each new user can create an account by registering with an email, password, and username. They will then be allowed to access their own personal account, protected with a unique **JWT token**, where they can access the following pages with their respective features:
@@ -22,7 +24,7 @@ Each new user can create an account by registering with an email, password, and 
 
 ## Technologies Used
 
-Per(n)sonal Budgetting is a **full-stack** web application built by using the **PERN stack** and is able to perform all **CRUD** operations.
+Per(n)sonal Budgetting is a **full-stack** web application built by using the **PERN stack**. It is able to perform all **CRUD** operations.
 
 The app was built entirely in **JavaScript** using: 
 * **React** as a Front-End Library (with **Bootstrap** stylying) 
@@ -31,3 +33,12 @@ The app was built entirely in **JavaScript** using:
 * **PostgreSQL** as a relational database. 
 
 In addition, the application implements **JWT (JSON Web Token)** authentication and authorization mechanisms, ensuring secure user registration and login processes.
+
+## Installation
+
+The app is deployed to heroku and can be accessed through the following link: https://pernsonalbudgetting.herokuapp.com/
+
+#### can run locally by following these instructions:
+1. Clone the repo
+2. Install NPM packages
+3. 
