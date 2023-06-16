@@ -38,7 +38,17 @@ In addition, the application implements **JWT (JSON Web Token)** authentication 
 
 The app is deployed to heroku and can be accessed through the following link: https://pernsonalbudgetting.herokuapp.com/
 
-#### can run locally by following these instructions:
-1. Clone the repo
-2. Install NPM packages
-3. 
+### Back-End Setup
+* Clone the repository: 
+* Install dependencies using npm i
+* Install nodemon globally if you don't already have it
+* Install PostgreSQL & run it (requires the password you created during installation)
+* Add database access credentials to db.js - recommend installing npm dotenv & using .env to hide credentials if commiting to Github
+* Postgresql shell commands: \l list all databases. \c database1 connect to database1. \dt inspect tables. \d+ inspect table & show relation information. \q to quit.
+* Run nodemon server for a dev server
+* http://localhost:3000/ can be accessed for CRUD operations such as POST, GET, PUT, DELETE etc. using Postman
+
+### Front-End Setup
+* Change to /client directory
+* Install dependencies using npm i.
+* run npm start. Frontend will open at http://localhost:3000/
