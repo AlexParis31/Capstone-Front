@@ -1,4 +1,4 @@
-# PER(N)sonal Budgetting Application
+# Personal Budgetting Application
 
 Per(n)sonal Budgetting is an application meant for users to keep track of their expenses and create customizable budgets for future spendings.
 
